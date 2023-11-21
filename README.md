@@ -3,7 +3,7 @@
 #### Requisitos:
 
 NodeJS >=16.18.1
-
+Serverless CLI
 
 
 #### Como baixar:
@@ -26,3 +26,10 @@ npm run dev
 ```
 
 `http://localhost:3000`.
+
+
+#### Executando o serverless localmente:
+
+```bash
+sls offline
+```

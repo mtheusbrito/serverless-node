@@ -1,17 +1,17 @@
 org: mtheusbrito
 app: activities
 service: activities
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
 
 functions:
-  sendResponse: 
+  sendResponse:
     handler: api/sendResponse.handler
     events:
-      - httpApi: 
+      - httpApi:
           path: /api/results
           method: post
           request:
@@ -23,5 +23,6 @@ functions:
       - httpApi:
           path: /api/results/{id}
           method: get
-          
 
+plugins:
+  - serverless-offline

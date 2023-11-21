@@ -1,6 +1,8 @@
-const { previousResults } = require("./utils");
+'use strict'
+import { previousResults } from "./utils.js"
 
-module.exports.getResult = async (event) => {
+
+const handler = async (event) => {
   const result = previousResults.get(event.pathParameters.id);
   if (!result) {
     return {
@@ -19,3 +21,5 @@ module.exports.getResult = async (event) => {
       },
   };
 };
+
+export { handler }

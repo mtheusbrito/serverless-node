@@ -1,11 +1,9 @@
-import { randomUUID } from "node:crypto";
-import { extractBody, previousResults } from "./utils";
+'use strict'
+import { randomUUID } from "crypto";
+import { previousResults, extractBody } from "./utils.js"
 
 
-
-
-
-module.exports.handler = async (event) => {
+const handler = async (event) => {
   const { name, answers } = extractBody(event);
   const correctQuestions = [3, 1, 0, 2];
 
@@ -40,3 +38,5 @@ module.exports.handler = async (event) => {
     },
   };
 };
+
+export { handler }
