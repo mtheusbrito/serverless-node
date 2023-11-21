@@ -1,0 +1,16 @@
+org: mtheusbrito
+app: activities
+service: activities
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  api:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
