@@ -1,8 +1,14 @@
 "use strict";
 import { extractBody } from "./utils.js";
 import { connectDatabase } from './config/db-connect.js'
+import { ensureAuthenticated } from "./middlewares/ensure-authenticated.js";
 
 const handler = async (event) => {
+
+  const authResult = await ensureAuthenticated(event);
+  if(authResult.statusCode === 401) return authResult;
+
+
   const { name, answers } = extractBody(event);
   const correctQuestions = [3, 1, 0, 2];
 
