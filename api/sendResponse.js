@@ -21,8 +21,7 @@ const handler = async (event) => {
   };
 
   const client = await connectDatabase();
-
-  const collection = await client.collection('results');
+  const collection = await client.collection("results");
 
   const { insertedId } = await collection.insertOne(result);
 
@@ -36,7 +35,6 @@ const handler = async (event) => {
         query: { id: insertedId },
       },
     }),
-
     headers: {
       "Content-Type": "application/json",
     },

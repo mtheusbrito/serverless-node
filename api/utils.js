@@ -1,4 +1,3 @@
-const previousResults = new Map();
 const extractBody = (event) => {
     if (!event.body) {
       return {
@@ -13,4 +12,4 @@ const extractBody = (event) => {
   };
 
 
-  export { extractBody, previousResults }
+  export { extractBody }

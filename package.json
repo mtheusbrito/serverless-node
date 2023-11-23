@@ -1,29 +1,34 @@
 {
   "name": "nodejs-serverless-framework",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=18.18.2"
+  },
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon -e js,html,mjs index.mjs",
-    "start": "node index.mjs"
+    "start": "node index.mjs",
+    "deploy": "sls deploy --stage=prod"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khaosdoctor/nodejs-serverless-framework.git"
+    "url": "git+https://github.com/mtheusbrito/serverless-node.git"
   },
   "keywords": [],
-  "author": "Lucas Santos <hello@lsantos.dev> (https://lsantos.dev/)",
+  "author": "Matheus Brito  <matheusbritodasilva@gmail.com> (https://mtheusbrito.github.io/)",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/khaosdoctor/nodejs-serverless-framework/issues"
+    "url": "https://github.com/mtheusbrito/serverless-node/issues"
   },
-  "homepage": "https://github.com/khaosdoctor/nodejs-serverless-framework#readme",
+  "homepage": "https://github.com/mtheusbrito/serverless-node#readme",
   "devDependencies": {
-    "@types/node": "^18.11.9",
     "nodemon": "^2.0.20",
     "serverless": "^3.24.1",
-    "serverless-offline": "^13.3.0"
+    "serverless-offline": "^13.3.0",
+    "serverless-plugin-common-excludes": "^4.0.0",
+    "serverless-plugin-include-dependencies": "^5.1.0"
   },
   "dependencies": {
     "express": "^4.18.2",
