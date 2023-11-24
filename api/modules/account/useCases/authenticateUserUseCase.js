@@ -3,7 +3,7 @@ import InvalidCredentials from "../../../errors/InvalidCredentials.js";
 import { pbkdf2Sync } from "node:crypto";
 import pkg from "jsonwebtoken";
 
-export class AuthenticateUserUseCase {
+export default class AuthenticateUserUseCase {
   constructor() {
     this.repository = new UsersRepository();
   }

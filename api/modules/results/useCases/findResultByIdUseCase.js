@@ -1,8 +1,8 @@
 import AppError from "../../../errors/AppError.js";
 import { ResultsRepository } from "../repositories/resultsRepository.js";
 
-export class FindResultByIdUseCase {
-  constructor(repository) {
+export default class FindResultByIdUseCase {
+  constructor() {
     this.repository = new ResultsRepository();
   }
 

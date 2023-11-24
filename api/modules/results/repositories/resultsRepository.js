@@ -1,5 +1,5 @@
 import { getCollection } from "../../../config/db-connect.js";
-import { ObjectId } from 'mongodb'
+import { ObjectId } from "mongodb";
 
 export class ResultsRepository {
   constructor() {}
@@ -10,11 +10,11 @@ export class ResultsRepository {
     return result;
   };
 
-  crete = async (name, answers, totalCorrectAnswers, totalAnswers) => {
+  create = async (name, answers, totalCorrectAnswers, totalAnswers) => {
     const result = { name, answers, totalCorrectAnswers, totalAnswers };
     const collection = await getCollection("results");
     const { insertedId } = await collection.insertOne(result);
 
-    return insertedId;
+    return { insertedId };
   };
 }

@@ -1,6 +1,5 @@
-import AppError from "../../../errors/AppError.js";
 import { extractBody } from "./../../../utils/index.js";
-import { AuthenticateUserUseCase } from "./../../account/useCases/authenticateUserUseCase.js";
+import AuthenticateUserUseCase from "./../../account/useCases/authenticateUserUseCase.js";
 import buildResponse from "./../../../utils/buildResponse.js";
 import buildErrorResponse from "../../../utils/buildErrorResponse.js";
 
