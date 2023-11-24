@@ -5,4 +5,13 @@ const connectDatabase = async () => {
   return connection.db(process.env.MONGODB_DB_NAME);
 };
 
-export { connectDatabase }
+
+
+
+const getCollection = async  (name) =>{
+  const client = await connectDatabase();
+  const collection = await client.collection(name);
+  return collection ;
+}
+
+export { connectDatabase,getCollection }
