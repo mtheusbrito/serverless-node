@@ -2,8 +2,8 @@
 
 #### Requisitos:
 
-NodeJS >=16.18.1
-Serverless CLI
+- NodeJS >=16.18.1
+- Serverless CLI
 
 
 #### Como baixar:

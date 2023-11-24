@@ -9,6 +9,7 @@ params:
   dev:
     connectionString: mongodb://127.0.0.1:27017/${self:params.default.dbName}
     salt: 5cDROEC8XHyNIt4Z9CNEfos34GAGPHCU
+    jwt_secret: 9b5xB0IRW7fMkNHIgvY3v6UVHoOTwabG
   prod:
   
 provider:
@@ -19,10 +20,11 @@ provider:
     MONGODB_CONNECTION_STRING: ${param:connectionString}
     MONGODB_DB_NAME: ${param:dbName}
     SALT: ${param:salt}
+    JWT_SECRET: ${param:jwt_secret}
 
 functions:
   sendResponse:
-    handler: api/sendResponse.handler
+    handler: api/modules/results/controllers/sendResponse.handler
     events:
       - httpApi:
           path: /api/results
@@ -31,11 +33,20 @@ functions:
             schemas:
               application/json: ${file(./schemas/sendResponse.json)}
   getResult:
-    handler: api/getResult.handler
+    handler: api/modules/results/controllers/getResult.handler
     events:
       - httpApi:
           path: /api/results/{id}
           method: get
+  login:
+    handler: api/modules/account/controllers/login.handler
+    events:
+      - httpApi:
+          path: /api/login
+          method: post
+          request:
+            schemas:
+              application/json: ${file(./schemas/login.json)}
 
 plugins:
   - serverless-offline

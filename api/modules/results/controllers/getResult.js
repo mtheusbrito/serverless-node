@@ -1,7 +1,7 @@
 "use strict";
-import { connectDatabase } from "./config/db-connect.js";
+import { connectDatabase } from "../../../config/db-connect.js";
 import { ObjectId } from "mongodb";
-import { ensureAuthenticated } from "./middlewares/ensure-authenticated.js";
+import { ensureAuthenticated } from "../../../middlewares/ensure-authenticated.js";
 
 const handler = async (event) => {
 

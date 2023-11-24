@@ -1,7 +1,8 @@
 "use strict";
-import { extractBody } from "./utils.js";
-import { connectDatabase } from './config/db-connect.js'
-import { ensureAuthenticated } from "./middlewares/ensure-authenticated.js";
+import { extractBody } from "./../../../utils/index.js"
+
+import { connectDatabase } from '../../../config/db-connect.js'
+import { ensureAuthenticated } from "../../../middlewares/ensure-authenticated.js";
 
 const handler = async (event) => {
 

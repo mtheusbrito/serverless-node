@@ -1,8 +1,9 @@
 import { pbkdf2Sync } from "node:crypto";
 import { connectDatabase } from "../config/db-connect.js";
+import pkg from "jsonwebtoken";
 export const ensureAuthenticated = async (event) => {
   const { authorization } = event.headers;
-
+  const { verify } = pkg;
   if (!authorization) {
     return {
       statusCode: 401,
@@ -10,44 +11,25 @@ export const ensureAuthenticated = async (event) => {
     };
   }
 
-  const [type, credentials] = authenticated.split(" ");
-
-  if (type !== "Basic") {
+  const [type, token] = authorization.split(" ");
+  if (type !== "Bearer" || !token) {
     return {
       statusCode: 401,
       body: JSON.stringify({ message: "Unsupported authorization type" }),
     };
   }
 
-  //   username:password
-  const [username, password] = Buffer.from(credentials, "base64")
-    .toString()
-    .split(":");
-
-  const hashedPass = pbkdf2Sync(
-    password,
-    process.env.SALT,
-    100000,
-    64,
-    "sha512"
-  ).toString("hex");
-
-  const client = await connectDatabase();
-  const collection = await client.collection("users");
-  const user = await collection.findOne({
-    username: username,
-    password: hashedPass,
-  });
-
-  if (!user) {
+  try {
+   const {username, id } =  verify(token, process.env.JWT_SECRET, {
+      audience: "activities-serverless",
+    });
+ 
+  } catch (err) {
     return {
       statusCode: 401,
-      body: JSON.stringify({ message: "Invalid credentials" }),
+      body: JSON.stringify({ message: "Invalid token" }),
     };
   }
 
-  return {
-    id: user._id,
-    username: user.username,
-  };
+  return true;
 };
