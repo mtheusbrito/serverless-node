@@ -9,3 +9,4 @@ const buildResponse = (object, statusCode) => {
 };
 
 export default buildResponse;
+

@@ -1,35 +1,23 @@
 "use strict";
-import { connectDatabase } from "../../../config/db-connect.js";
-import { ObjectId } from "mongodb";
 import { ensureAuthenticated } from "../../../middlewares/ensure-authenticated.js";
+import { FindResultByIdUseCase } from "../useCases/findResultByIdUseCase.js";
+import buildErrorResponse from "../../../utils/buildErrorResponse.js";
+import buildResponse from "../../../utils/buildResponse.js";
 
 const handler = async (event) => {
+   
+  const findResultByIdUseCase = new FindResultByIdUseCase();
 
-  const authResult = await ensureAuthenticated(event);
-  if(authResult.statusCode === 401) return authResult;
+  try {
 
-  const client = await connectDatabase();
-  const collection = await client.collection("results");
+    ensureAuthenticated(event);
 
-  const result = await collection.findOne({
-    _id: new ObjectId(event.pathParameters.id),
-  });
-  if (!result) {
-    return {
-      statusCode: 404,
-      body: JSON.stringify({ error: "Result not found" }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    const { id } = event.pathParameters;
+    const result = await findResultByIdUseCase.execute(id);
+    return buildResponse(result, 200);
+  } catch (err) {
+    return buildErrorResponse(err);
   }
-  return {
-    statusCode: 200,
-    body: JSON.stringify(result),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
 };
 
 export { handler };

@@ -2,11 +2,14 @@ import { UsersRepository } from "../repositories/usersRepository.js";
 import InvalidCredentials from "../../../errors/InvalidCredentials.js";
 import { pbkdf2Sync } from "node:crypto";
 import pkg from "jsonwebtoken";
+
 export class AuthenticateUserUseCase {
   constructor() {
     this.repository = new UsersRepository();
   }
-  handler = async (username, password) => {
+
+  execute = async (username, password) => {
+    
     const user = await this.repository.findUserByUsername(username);
     if (!user) {
       throw new InvalidCredentials();
@@ -31,6 +34,6 @@ export class AuthenticateUserUseCase {
       audience: "activities-serverless",
     });
 
-    return token
+    return token;
   };
 }
