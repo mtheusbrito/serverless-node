@@ -21,7 +21,23 @@ provider:
     MONGODB_DB_NAME: ${param:dbName}
     SALT: ${param:salt}
     JWT_SECRET: ${param:jwt_secret}
-
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:8080
+        - http://localhost:3001
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - GET
+        - POST
+        - DELETE
+        - PUT
+        - PATCH
+        - OPTIONS
+        - HEAD
+      allowCredentials: true
 functions:
   sendResponse:
     handler: api/modules/results/controllers/sendResponse.handler
@@ -29,7 +45,6 @@ functions:
       - httpApi:
           path: /api/results
           method: post
-          cors: true
           request:
             schemas:
               application/json: ${file(./schemas/sendResponse.json)}
@@ -39,7 +54,6 @@ functions:
       - httpApi:
           path: /api/results/{id}
           method: get
-          cors: true
   login:
     handler: api/modules/account/controllers/login.handler
     events:

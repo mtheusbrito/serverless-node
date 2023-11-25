@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon -e js,html,mjs index.mjs",
     "dev:serverless": "sls offline",
-    "dev:interface": "http-server ./interface -8080",
+    "dev:interface": "http-server ./interface -8080 --cors",
     "start": "node index.mjs",
     "deploy": "sls deploy --stage=prod"
   },
