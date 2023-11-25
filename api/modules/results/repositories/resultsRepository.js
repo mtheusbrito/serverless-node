@@ -10,8 +10,7 @@ export class ResultsRepository {
     return result;
   };
 
-  create = async (name, answers, totalCorrectAnswers, totalAnswers) => {
-    const result = { name, answers, totalCorrectAnswers, totalAnswers };
+  create = async (result) => {
     const collection = await getCollection("results");
     const { insertedId } = await collection.insertOne(result);
 

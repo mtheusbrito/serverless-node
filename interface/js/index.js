@@ -32,8 +32,9 @@ $('form').addEventListener('submit', async (e) => {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.localStorage.getItem('serverless-activities:accessToken')}`
+   }
   })
 
   if (response.ok) {

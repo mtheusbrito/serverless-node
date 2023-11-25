@@ -21,7 +21,7 @@ export default class SendResponseUseCase {
       totalAnswers: answers.length,
     };
 
-    const { insertedId } = await this.repository.create({ ...result });
+    const { insertedId } = await this.repository.create(result);
 
 
     return {
