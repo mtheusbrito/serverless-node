@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "nodemon -e js,html,mjs index.mjs",
     "dev:serverless": "sls offline",
+    "dev:interface": "http-server ./interface -8080",
     "start": "node index.mjs",
     "deploy": "sls deploy --stage=prod"
   },
@@ -33,6 +34,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "http-server": "^14.1.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0"
   }

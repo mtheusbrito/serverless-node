@@ -29,6 +29,7 @@ functions:
       - httpApi:
           path: /api/results
           method: post
+          cors: true
           request:
             schemas:
               application/json: ${file(./schemas/sendResponse.json)}
@@ -38,12 +39,14 @@ functions:
       - httpApi:
           path: /api/results/{id}
           method: get
+          cors: true
   login:
     handler: api/modules/account/controllers/login.handler
     events:
       - httpApi:
           path: /api/login
           method: post
+          cors: true
           request:
             schemas:
               application/json: ${file(./schemas/login.json)}
