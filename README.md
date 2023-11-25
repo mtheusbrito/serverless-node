@@ -2,7 +2,7 @@
 
 #### Requisitos:
 
-- NodeJS >=16.18.1
+- NodeJS >=18.18.2
 - Serverless CLI
 
 
